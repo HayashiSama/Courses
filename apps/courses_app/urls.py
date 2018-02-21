@@ -19,7 +19,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^add$', views.addcourse),
-    url(r'^(?P<id>[0-9]+)/destroy$', views.destroy),   
+    url(r'^(?P<id>[0-9]+)/destroy$', views.destroy),
+    url(r'^(?P<id>[0-9]+)/destroyconfirm$', views.destroyconfirm),  
 ]
 
 

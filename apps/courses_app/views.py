@@ -43,3 +43,12 @@ def destroy(request, id):
 		return redirect ("/courses_app")
 	b.delete() # deletes that particular record	
 	return redirect ("/courses_app")
+
+def destroyconfirm(request, id):
+	try:
+		b = Course.objects.get(id=id)
+	except User.DoesNotExist:
+		print "Course DOES NOT EXIST"
+		return redirect ("/courses_app")
+	context = {'x':b}
+	return render(request, "courses_app/destroyconfirm.html", context)
