@@ -19,13 +19,15 @@ def index(request):
 
 def addcourse(request):
 	if request.method=='POST':
-		print "post"
+		errors = {}
+		errors = Course.objects.basic_validator(request.POST)
+		if(len(errors)):
+			print errors
+			return redirect('/courses_app')
+
 		name = request.POST['name']
 		desc = request.POST['desc']
-		if len(name) < 5:
-			return redirect('/courses_app')
-		if len(desc) < 10:
-			return redirect('/courses_app')
+
 		try:
 			Course.objects.create(name=name, desc=desc)
 		except IntegrityError as e:
